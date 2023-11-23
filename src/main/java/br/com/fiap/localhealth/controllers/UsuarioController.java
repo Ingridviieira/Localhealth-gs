@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.localhealth.models.Credencial;
+import br.com.fiap.localhealth.models.Token;
 import br.com.fiap.localhealth.models.Usuario;
 import br.com.fiap.localhealth.repository.UsuarioRepository;
 import br.com.fiap.localhealth.service.TokenService;
@@ -40,10 +41,9 @@ public class UsuarioController {
     }
 
     @PostMapping("/api/login")
-    public ResponseEntity<Object> login(@RequestBody Credencial credencial){
+    public Token login(@RequestBody Credencial credencial) {
         manager.authenticate(credencial.toAuthentication());
-        var token = tokenService.generateToken(credencial);
-        return ResponseEntity.ok(token);
+        return tokenService.generateToken(credencial);
     }
     
 }
