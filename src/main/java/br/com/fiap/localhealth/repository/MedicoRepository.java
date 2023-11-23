@@ -10,5 +10,5 @@ import br.com.fiap.localhealth.models.Medico;
 
 public interface MedicoRepository extends JpaRepository<Medico, Long> {
 
-    Page<Medico> findByCrmContaining(String busca, Pageable pageable);
+    Page<Medico> findByNmMedicoContaining(String busca, Pageable pageable);
 }

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.localhealth.exception.RestNotFoundException;
+import br.com.fiap.localhealth.models.Doenca;
 import br.com.fiap.localhealth.models.Localizacao;
 import br.com.fiap.localhealth.repository.DiagnosticoRepository;
 import br.com.fiap.localhealth.repository.LocalizacaoRepository;
@@ -44,9 +45,6 @@ public class LocalizacaoController {
     private LocalizacaoRepository localizacaoRepository;
 
     @Autowired
-    private DiagnosticoRepository diagnosticoRepository;
-
-    @Autowired
     PagedResourcesAssembler<Object> assembler;
 
     @GetMapping
@@ -59,19 +57,13 @@ public class LocalizacaoController {
     }
 
     @PostMapping
-    @ApiResponses({
-        @ApiResponse(responseCode = "201", description = "a localizacao foi cadastrada com sucesso"),
-        @ApiResponse(responseCode = "400", description = "os dados enviados são inválidos")
-    })
-    public ResponseEntity<EntityModel<Localizacao>> create(
-            @RequestBody @Valid Localizacao localizacao,
-            BindingResult result) {
+    public ResponseEntity<Localizacao> create(
+            @RequestBody @Valid Localizacao localizacao, 
+            BindingResult result
+        ){
         log.info("cadastrando localizacao: " + localizacao);
         localizacaoRepository.save(localizacao);
-        localizacao.setDiagnostico(diagnosticoRepository.findById(localizacao.getDiagnostico().getId()).get());
-        return ResponseEntity
-            .created(localizacao.toEntityModel().getRequiredLink("self").toUri())
-            .body(localizacao.toEntityModel());
+        return ResponseEntity.status(HttpStatus.CREATED).body(localizacao);
     }
 
     @GetMapping("{id}")

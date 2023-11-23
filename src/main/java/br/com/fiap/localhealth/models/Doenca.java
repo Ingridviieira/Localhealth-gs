@@ -38,16 +38,13 @@ public class Doenca {
 
     private String dsSintomas;
 
-    @ManyToOne
-    private Diagnostico diagnostico;
 
     public EntityModel<Doenca> toEntityModel() {
         return EntityModel.of(
             this, 
             linkTo(methodOn(DoencaController.class).show(id)).withSelfRel(),
             linkTo(methodOn(DoencaController.class).destroy(id)).withRel("delete"),
-            linkTo(methodOn(DoencaController.class).index(null, Pageable.unpaged())).withRel("all"),
-            linkTo(methodOn(DoencaController.class).show(this.getDiagnostico().getId())).withRel("diagnostico")
+            linkTo(methodOn(DoencaController.class).index(null, Pageable.unpaged())).withRel("all")
         );
     }
     

@@ -39,14 +39,14 @@ public class DatabaseSeeder implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         // Criar  Diagnostico
-        Diagnostico dg1 = new Diagnostico(1L,"05773-110", (LocalDate.now()));
+        Diagnostico dg1 = new Diagnostico(1L,"05773-110", "23/10/23");
         diagnosticoRepository.saveAll(List.of(dg1));
         
-        Medico medico1 = new Medico(1L, "95396", "Dr. João", "Clinico geral", dg1);
+        Medico medico1 = new Medico(1L, "95396", "Dr. João", "Clinico geral");
         medicoRepository.saveAll(List.of(medico1));
 
         // Crie uma doença
-        Doenca doenca1 = new Doenca(1L,"Gripe","Febre, tosse, dor de cabeça", dg1);
+        Doenca doenca1 = new Doenca(1L,"Gripe","Febre, tosse, dor de cabeça");
         doencaRepository.saveAll(List.of(doenca1));
 
         // // Crie uma localização associada ao diagnóstico

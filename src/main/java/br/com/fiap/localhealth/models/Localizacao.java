@@ -38,16 +38,13 @@ public class Localizacao {
 
     private String nmBairro;
 
-    @ManyToOne
-    private Diagnostico diagnostico;
-
+    
     public EntityModel<Localizacao> toEntityModel() {
         return EntityModel.of(
             this, 
             linkTo(methodOn(LocalizacaoController.class).show(id)).withSelfRel(),
             linkTo(methodOn(LocalizacaoController.class).destroy(id)).withRel("delete"),
-            linkTo(methodOn(LocalizacaoController.class).index(null, Pageable.unpaged())).withRel("all"),
-            linkTo(methodOn(LocalizacaoController.class).show(this.getDiagnostico().getId())).withRel("diagnostico")
+            linkTo(methodOn(LocalizacaoController.class).index(null, Pageable.unpaged())).withRel("all")
         );
     }
 

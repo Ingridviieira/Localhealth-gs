@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.localhealth.exception.RestNotFoundException;
 import br.com.fiap.localhealth.models.Doenca;
+import br.com.fiap.localhealth.models.Medico;
 import br.com.fiap.localhealth.repository.DiagnosticoRepository;
 import br.com.fiap.localhealth.repository.DoencaRepository;
 import io.swagger.v3.oas.annotations.Operation;
@@ -42,7 +43,7 @@ public class DoencaController {
     @Autowired
     private DoencaRepository doencaRepository;
 
-    private DiagnosticoRepository diagnosticoRepository;
+
 
     @Autowired
     PagedResourcesAssembler<Object> assembler;
@@ -57,21 +58,15 @@ public class DoencaController {
     }
 
     @PostMapping
-    @ApiResponses({
-        @ApiResponse(responseCode = "201", description = "a doença foi cadastrada com sucesso"),
-        @ApiResponse(responseCode = "400", description = "os dados enviados são inválidos")
-    })
-    public ResponseEntity<EntityModel<Doenca>> create(
-            @RequestBody @Valid Doenca doenca,
-            BindingResult result) {
+    public ResponseEntity<Doenca> create(
+            @RequestBody @Valid Doenca doenca, 
+            BindingResult result
+        ){
         log.info("cadastrando doenca: " + doenca);
         doencaRepository.save(doenca);
-        doenca.setDiagnostico(diagnosticoRepository.findById(doenca.getDiagnostico().getId()).get());
-        return ResponseEntity
-            .created(doenca.toEntityModel().getRequiredLink("self").toUri())
-            .body(doenca.toEntityModel());
+        return ResponseEntity.status(HttpStatus.CREATED).body(doenca);
     }
-
+    
     @GetMapping("{id}")
     @Operation(
         summary = "Detalhes da doenca",
