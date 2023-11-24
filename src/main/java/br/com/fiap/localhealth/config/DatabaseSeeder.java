@@ -20,7 +20,7 @@ import br.com.fiap.localhealth.repository.MedicoRepository;
 
 
 @Configuration
-@Profile("dev")
+
 public class DatabaseSeeder implements CommandLineRunner {
     
     @Autowired
