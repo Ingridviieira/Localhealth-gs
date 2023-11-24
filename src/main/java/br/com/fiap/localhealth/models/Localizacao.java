@@ -38,15 +38,11 @@ public class Localizacao {
 
     private String nmBairro;
 
-    
-    public EntityModel<Localizacao> toEntityModel() {
-        return EntityModel.of(
-            this, 
-            linkTo(methodOn(LocalizacaoController.class).show(id)).withSelfRel(),
-            linkTo(methodOn(LocalizacaoController.class).destroy(id)).withRel("delete"),
-            linkTo(methodOn(LocalizacaoController.class).index(null, Pageable.unpaged())).withRel("all")
-        );
-    }
+    @ManyToOne
+    @JoinColumn(name = "diagnostico_id")
+    private Diagnostico diagnostico;
+
+
 
 }
     

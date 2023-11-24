@@ -24,6 +24,11 @@
 			<version>2.1.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc10</artifactId>
+			<version>19.8.0.0</version> <!-- Use a versão adequada para o seu ambiente -->
+		</dependency>
 
 		<dependency>
 			<groupId>com.auth0</groupId>

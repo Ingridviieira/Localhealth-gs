@@ -31,6 +31,12 @@ public class Usuario implements UserDetails {
     private String email;
     private String senha;
 
+    private String crm;
+
+    private String nmMedico;
+
+    private String especialidade;
+
     
 
     @Override
@@ -40,7 +46,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return crm;
     }
 
     @Override

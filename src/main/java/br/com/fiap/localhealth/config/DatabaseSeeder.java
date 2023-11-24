@@ -34,23 +34,31 @@ public class DatabaseSeeder implements CommandLineRunner {
 
     @Autowired
     MedicoRepository medicoRepository;
-
+    
     @Override
     public void run(String... args) throws Exception {
 
-        // Criar  Diagnostico
-        Diagnostico dg1 = new Diagnostico(1L,"05773-110", "23/10/23");
-        diagnosticoRepository.saveAll(List.of(dg1));
-        
+        // Criar Medicos
         Medico medico1 = new Medico(1L, "95396", "Dr. João", "Clinico geral");
-        medicoRepository.saveAll(List.of(medico1));
+        Medico medico2 = new Medico(2L, "12345", "Dra. Maria", "Cardiologista");
+        medicoRepository.saveAll(List.of(medico1, medico2));
 
-        // Crie uma doença
-        Doenca doenca1 = new Doenca(1L,"Gripe","Febre, tosse, dor de cabeça");
-        doencaRepository.saveAll(List.of(doenca1));
+        // Crie Doencas
+        Doenca doenca1 = new Doenca(1L,"95492", "Gripe","Febre, tosse, dor de cabeça");
+        Doenca doenca2 = new Doenca(2L,"959372","Resfriado","Congestão nasal, espirros");
+        doencaRepository.saveAll(List.of(doenca1, doenca2));
 
-        // // Crie uma localização associada ao diagnóstico
-        // Localizacao localizacao1 = new Localizacao(1L,"São Paulo", "SP","Rua Abc, 347", "Parque Regina", dg1);
-        // LocalizacaoRepository.saveAll(List.of(localizacao1));
+        // Criar Diagnosticos associados a Medicos e Doencas
+        Diagnostico dg1 = new Diagnostico(1L,"05773-110", "23/10/23", medico1, doenca1);
+        Diagnostico dg2 = new Diagnostico(2L,"12345-678", "24/10/23", medico2, doenca2);
+        diagnosticoRepository.saveAll(List.of(dg1, dg2));
+
+        // Crie Localizacoes associadas aos Diagnosticos
+        Localizacao localizacao1 = new Localizacao(1L,"São Paulo", "SP","Rua Abc, 347", "Parque Regina", dg2);
+        Localizacao localizacao2 = new Localizacao(2L,"Rio de Janeiro", "RJ","Avenida Xyz, 123", "Copacabana",dg1);
+        
+        localizacao1.setDiagnostico(dg1); // Associe a localizacao ao diagnostico
+        localizacao2.setDiagnostico(dg2);
     }
 }
+

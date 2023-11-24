@@ -44,7 +44,6 @@ public class DoencaController {
     private DoencaRepository doencaRepository;
 
 
-
     @Autowired
     PagedResourcesAssembler<Object> assembler;
 

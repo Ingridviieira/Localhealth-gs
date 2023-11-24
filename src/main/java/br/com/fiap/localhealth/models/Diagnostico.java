@@ -1,23 +1,12 @@
 package br.com.fiap.localhealth.models;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import org.springframework.data.domain.Pageable;
-import org.springframework.hateoas.EntityModel;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,6 +27,16 @@ public class Diagnostico {
     private String nrCep;
 
     private String dtDiagnostico;
+
+     // Relacionamento com a tabela Medico
+    @ManyToOne
+    @JoinColumn(name = "medico_id")
+    private Medico medico;
+
+     // Relacionamento com a tabela Doenca
+    @ManyToOne
+    @JoinColumn(name = "doenca_id")
+    private Doenca doenca;
 
 
 }

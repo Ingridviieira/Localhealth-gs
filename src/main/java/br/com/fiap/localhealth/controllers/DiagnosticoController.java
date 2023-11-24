@@ -18,13 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.localhealth.exception.RestNotFoundException;
 import br.com.fiap.localhealth.models.Diagnostico;
 import br.com.fiap.localhealth.repository.DiagnosticoRepository;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/api/v1/diagnostico")
 @Slf4j
+@SecurityRequirement(name = "bearer-key")
+@Tag(name = "diagnostico")
 public class DiagnosticoController {
+    
     @Autowired
     DiagnosticoRepository repository;
 

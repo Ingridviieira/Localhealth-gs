@@ -34,6 +34,8 @@ public class Doenca {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String cidDoenca;
+
     private String nmDoenca;
 
     private String dsSintomas;

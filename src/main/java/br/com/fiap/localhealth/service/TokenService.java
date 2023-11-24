@@ -28,7 +28,7 @@ public class TokenService {
     public Token generateToken(Credencial credencial) {
         Algorithm alg = Algorithm.HMAC256(secret);
         var token = JWT.create()
-                    .withSubject(credencial.email())
+                    .withSubject(credencial.crm())
                     .withIssuer("Localhealth")
                     .withExpiresAt(Instant.now().plus(20, ChronoUnit.MINUTES))
                     .sign(alg)
@@ -38,13 +38,13 @@ public class TokenService {
 
     public Usuario getUserByToken(String token) {
         Algorithm alg = Algorithm.HMAC256(secret);
-        var email = JWT.require(alg)
+        var crm = JWT.require(alg)
                     .withIssuer("Localhealth")
                     .build()
                     .verify(token)
                     .getSubject();
                 ;
-        return usuarioRepository.findByEmail(email)
+        return usuarioRepository.findByCrm(crm)
                     .orElseThrow(() -> new JWTVerificationException("Usuario invalido"));
     }
     
