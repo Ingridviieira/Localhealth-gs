@@ -7,7 +7,11 @@ RM93535 - Erik Siarkowski Salafia
 RM95396 - Ingrid Vieira de Oliveira
 
 ## Objetivo do projeto:
-......
+Este projeto propõe a criação de um sistema unificado para rastreamento e monitoramento de doenças, onde médicos podem registrar diagnósticos juntamente com informações de localização e data em um banco de dados centralizado. O objetivo principal é fornecer uma ferramenta eficaz para identificar e controlar surtos de doenças emergentes.
+
+Ao centralizar esses dados vitais, o sistema permitiria um monitoramento detalhado, revelando padrões sobre quando e onde novos surtos estão ocorrendo. Essa abordagem não apenas simplificaria o rastreamento de doenças, mas também possibilitaria um controle mais rápido e eficiente desses surtos. Profissionais de saúde e autoridades teriam acesso a informações cruciais que lhes permitiriam agir de maneira proativa para prevenir e conter epidemias antes que se espalhem.
+
+A visão por trás desse projeto é transformar a maneira como detectamos e respondemos a novas epidemias, promovendo um mundo mais seguro para todos. A centralização de dados e a colaboração entre profissionais de saúde e autoridades visam criar uma compreensão abrangente dos desafios da saúde pública e oferecer uma solução inovadora para lidar com esses desafios.
 
 ## Endpoints para Medico
 
